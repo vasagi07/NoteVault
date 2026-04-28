@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IndexedDBService } from './services/indexeddb.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -18,6 +18,7 @@ import { Note } from './models/note.model';
           </svg>
         </button>
         <div class="mobile-logo">
+          <img src="/logo.png" alt="NoteVault Logo" class="mobile-logo-image" />
           <h2>NoteVault</h2>
         </div>
         <button class="theme-toggle" (click)="toggleTheme()">
@@ -29,6 +30,9 @@ import { Note } from './models/note.model';
           </svg>
         </button>
       </div>
+      
+      <!-- Backdrop for mobile sidebar -->
+      <div class="sidebar-backdrop" *ngIf="sidebar?.isMobileOpen" (click)="closeSidebar()"></div>
       
       <app-sidebar 
         [notes]="filteredNotes"
@@ -152,9 +156,28 @@ import { Note } from './models/note.model';
       background: var(--primary-hover);
       transform: scale(1.05);
     }
+
+    .sidebar-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 99;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar-backdrop {
+        display: block;
+      }
+    }
   `]
 })
 export class AppComponent implements OnInit {
+  @ViewChild('sidebar') sidebar!: SidebarComponent;
+  
   notes: Note[] = [];
   filteredNotes: Note[] = [];
   selectedNote: Note | null = null;
@@ -311,9 +334,14 @@ export class AppComponent implements OnInit {
   }
 
   toggleSidebar(): void {
-    const sidebar = document.querySelector('app-sidebar') as any;
-    if (sidebar) {
-      sidebar.openMobile();
+    if (this.sidebar) {
+      this.sidebar.openMobile();
+    }
+  }
+
+  closeSidebar(): void {
+    if (this.sidebar) {
+      this.sidebar.closeMobile();
     }
   }
 
