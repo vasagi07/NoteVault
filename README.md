@@ -5,7 +5,7 @@
 ![Angular](https://img.shields.io/badge/Angular_19-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript_5.6-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![IndexedDB](https://img.shields.io/badge/IndexedDB-FF9900?style=for-the-badge&logo=googlechrome&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
 
 **A modern, offline-first notes application built with Angular 19**
 
@@ -31,7 +31,6 @@
 - [Code Quality](#code-quality)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
 
