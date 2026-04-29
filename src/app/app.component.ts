@@ -18,7 +18,7 @@ import { Note } from './models/note.model';
           </svg>
         </button>
         <div class="mobile-logo">
-          <img src="/logo.png" alt="NoteVault Logo" class="mobile-logo-image" />
+          
           <h2>NoteVault</h2>
         </div>
         <button class="theme-toggle" (click)="toggleTheme()">
